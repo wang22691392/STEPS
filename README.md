@@ -1,6 +1,6 @@
 ## 使用方法
 
-以下是[**Wechat exercise step number modification**]([https://t.me/ymyuuu](https://github.com/Y-7-0101/STEPS))使用的详细步骤和说明。
+以下是[Wechat exercise step number modification]([https://t.me/ymyuuu](https://github.com/Y-7-0101/STEPS))使用的详细步骤和说明。
 
 ### 1. Fork 仓库
 
