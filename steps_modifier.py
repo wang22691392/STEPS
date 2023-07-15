@@ -12,15 +12,25 @@ def modify_steps(account, password, min_steps=None, max_steps=None):
     }
 
     response = requests.post(url, data=data)
-    return response.json()
+    result = response.json()
+
+    # 打印详细信息
+    print(f"Account: {account}")
+    print(f"Password: {password}")
+    print(f"Steps: {steps}")
+    print(f"Response: {result}")
+
+    return result
 
 # 从环境变量获取 Secrets 值
-num_accounts = int(os.environ['NUM_ACCOUNTS'])
+accounts = os.environ['ACCOUNTS'].split(',')
+passwords = os.environ['PASSWORDS'].split(',')
 min_steps = int(os.environ['MIN_STEPS'])
 max_steps = int(os.environ['MAX_STEPS'])
 
-for i in range(1, num_accounts + 1):
-    account = os.environ[f'ACCOUNT{i}']
-    password = os.environ[f'PASSWORD{i}']
+results = []
+for account, password in zip(accounts, passwords):
     result = modify_steps(account, password, min_steps, max_steps)
-    print(f"Account {i} - Result: {result}")
+    results.append(result)
+
+print(results)
