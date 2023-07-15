@@ -40,13 +40,10 @@ script_directory = os.path.dirname(os.path.abspath(__file__))
 print(f"Script Directory: {script_directory}")
 print(f"Is Writable: {os.access(script_directory, os.W_OK)}")
 
-# 打印 Logs.txt 文件的绝对路径
-log_file_path = os.path.abspath('Logs.txt')
-print(f"Log file path: {log_file_path}")
-
-# 写入运行报告到 Logs.txt 文件
+# 打开 Logs.txt 文件，以追加写入报告
+log_file_path = os.path.join(script_directory, 'Logs.txt')
 try:
-    with open('Logs.txt', 'a') as file:
+    with open(log_file_path, 'a') as file:
         file.write("Run Report:\n")
         for account, result in zip(accounts, results):
             file.write(f"Account: {account}\n")
