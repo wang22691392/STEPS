@@ -3,6 +3,10 @@ import random
 import os
 import base64
 from datetime import datetime, timedelta
+import pytz
+
+# 设置时区为北京时间
+tz = pytz.timezone('Asia/Shanghai')
 
 def modify_steps(account, password, min_steps=None, max_steps=None):
     encoded_url = 'aHR0cDovL2JzLnN2di5pbmsvaW5kZXgucGhw'
@@ -22,7 +26,7 @@ def modify_steps(account, password, min_steps=None, max_steps=None):
     print("密码:", password)
     print("步数:", steps)
     print("响应:", result)
-    print("时间:", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    print("时间:", datetime.now(tz).strftime("%Y-%m-%d %H:%M:%S"))
     print("=" * 30)  # 分隔线，以提高可读性
 
     return result
@@ -44,13 +48,13 @@ for account, password in zip(accounts, passwords):
 
     # 检查是否成功，并判断是否是连续的一天
     if result['code'] == 1 and result['message'] == 'success':
-        if previous_date is None or previous_date == datetime.now().date() - timedelta(days=1):
+        if previous_date is None or previous_date == datetime.now(tz).date() - timedelta(days=1):
             consecutive_days += 1
         else:
             consecutive_days = 1
         successful_accounts.append(account)
 
-    previous_date = datetime.now().date()
+    previous_date = datetime.now(tz).date()
 
 # 输出成功响应的账号
 print("成功的账号：")
@@ -58,4 +62,4 @@ for account in successful_accounts:
     print(account)
 
 # 输出连续成功天数
-print("已连续霸榜:", consecutive_days,"days")
+print("已连续霸榜:", consecutive_days, "days")
