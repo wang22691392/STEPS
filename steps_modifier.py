@@ -33,8 +33,16 @@ for account, password in zip(accounts, passwords):
     result = modify_steps(account, password, min_steps, max_steps)
     results.append(result)
 
+# 获取当前脚本所在的目录
+script_directory = os.path.dirname(os.path.abspath(__file__))
+
+# 打印脚本目录和可写性
+print(f"Script Directory: {script_directory}")
+print(f"Is Writable: {os.access(script_directory, os.W_OK)}")
+
 # 写入运行报告到 Logs.txt 文件
-with open('Logs.txt', 'a') as file:
+log_file = os.path.join(script_directory, 'Logs.txt')
+with open(log_file, 'a') as file:
     file.write("Run Report:\n")
     for account, result in zip(accounts, results):
         file.write(f"Account: {account}\n")
