@@ -1,0 +1,46 @@
+name: Modify Steps
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  initial_run:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: pip install requests
+
+    - name: Run task
+      run: |
+        python -c "import requests
+
+def modify_steps(username, password, steps):
+    url = 'http://bs.svv.ink/index.php'
+    data = {
+        'username': username,
+        'password': password,
+        'steps': steps
+    }
+
+    response = requests.post(url, data=data)
+
+    if response.status_code == 200:
+        print('步数修改成功！')
+    else:
+        print('步数修改失败！')
+
+username = '15033296069'
+password = '20030101h'
+steps = 10000
+
+modify_steps(username, password, steps)"
