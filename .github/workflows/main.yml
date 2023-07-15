@@ -3,7 +3,7 @@ name: Steps Modifier
 on:
   push:
     branches: 
-      - master
+      - main
   schedule:
     - cron: '*/2 * * * *'
 
