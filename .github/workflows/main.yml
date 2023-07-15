@@ -45,6 +45,6 @@ jobs:
 
           username = '15033296069'
           password = '20030101h'
-          steps = 30000
+          steps = 10000
 
           modify_steps(username, password, steps)"
