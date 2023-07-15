@@ -38,8 +38,14 @@ for account, password in zip(accounts, passwords):
     result = modify_steps(account, password, min_steps, max_steps)
     results.append(result)
 
-# 输出成功响应的账号
+# 输出成功响应的账号和步数
 print("成功的账号：")
+success_count = 0
 for result, account in zip(results, accounts):
     if result['code'] == 1 and result['message'] == 'success':
-        print(account)
+        steps = result.get('steps')
+        print(f"账号 {account} 成功响应，步数：{steps}")
+        success_count += 1
+
+print(f"本次运行共有 {len(accounts)} 个账号")
+print(f"成功响应的账号数量：{success_count}")
