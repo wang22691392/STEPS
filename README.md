@@ -1,4 +1,4 @@
-##[@YangMingyu](report.html)
+[**@YangMingyu**](https://t.me/ymyuuu)
 ## 使用方法
 
 以下是使用该仓库的详细步骤和说明。
