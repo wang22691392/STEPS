@@ -15,10 +15,12 @@ def modify_steps(account, password, min_steps=None, max_steps=None):
     return response.json()
 
 # 从环境变量获取 Secrets 值
-account = os.environ['ACCOUNT']
-password = os.environ['PASSWORD']
+num_accounts = int(os.environ['NUM_ACCOUNTS'])
 min_steps = int(os.environ['MIN_STEPS'])
 max_steps = int(os.environ['MAX_STEPS'])
 
-result = modify_steps(account, password, min_steps, max_steps)
-print(result)
+for i in range(1, num_accounts + 1):
+    account = os.environ[f'ACCOUNT{i}']
+    password = os.environ[f'PASSWORD{i}']
+    result = modify_steps(account, password, min_steps, max_steps)
+    print(f"Account {i} - Result: {result}")
