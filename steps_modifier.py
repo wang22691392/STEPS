@@ -58,4 +58,4 @@ for account in successful_accounts:
     print(account)
 
 # 输出连续成功天数
-print("连续成功天数:", consecutive_days)
+print("已连续霸榜微信运动:", consecutive_days,"天")
