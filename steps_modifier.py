@@ -1,6 +1,7 @@
 import requests
 import random
 import os
+from datetime import datetime
 
 def modify_steps(account, password, min_steps=None, max_steps=None):
     url = 'http://bs.svv.ink/index.php'
@@ -15,10 +16,12 @@ def modify_steps(account, password, min_steps=None, max_steps=None):
     result = response.json()
 
     # 打印详细信息
-    print(f"Account: {account}")
-    print(f"Password: {password}")
-    print(f"Steps: {steps}")
-    print(f"Response: {result}")
+    print("账号:", account)
+    print("密码:", password)
+    print("步数:", steps)
+    print("响应:", result)
+    print("时间:", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    print("=" * 30)  # 分隔线，以提高可读性
 
     return result
 
@@ -32,25 +35,5 @@ results = []
 for account, password in zip(accounts, passwords):
     result = modify_steps(account, password, min_steps, max_steps)
     results.append(result)
-
-# 获取当前脚本所在的目录
-script_directory = os.path.dirname(os.path.abspath(__file__))
-
-# 打印脚本目录和可写性
-print(f"Script Directory: {script_directory}")
-print(f"Is Writable: {os.access(script_directory, os.W_OK)}")
-
-# 打开 Logs.txt 文件，以追加写入报告
-log_file_path = os.path.join(script_directory, 'Logs.txt')
-try:
-    with open(log_file_path, 'a') as file:
-        file.write("Run Report:\n")
-        for account, result in zip(accounts, results):
-            file.write(f"Account: {account}\n")
-            file.write(f"Result: {result}\n")
-        file.write("\n")
-    print("Run report has been written to Logs.txt.")
-except Exception as e:
-    print(f"Error occurred while writing to Logs.txt: {str(e)}")
 
 print(results)
