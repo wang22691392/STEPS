@@ -42,11 +42,15 @@ print(f"Is Writable: {os.access(script_directory, os.W_OK)}")
 
 # 写入运行报告到 Logs.txt 文件
 log_file = os.path.join(script_directory, 'Logs.txt')
-with open(log_file, 'a') as file:
-    file.write("Run Report:\n")
-    for account, result in zip(accounts, results):
-        file.write(f"Account: {account}\n")
-        file.write(f"Result: {result}\n")
-    file.write("\n")
+try:
+    with open(log_file, 'a') as file:
+        file.write("Run Report:\n")
+        for account, result in zip(accounts, results):
+            file.write(f"Account: {account}\n")
+            file.write(f"Result: {result}\n")
+        file.write("\n")
+    print("Run report has been written to Logs.txt.")
+except Exception as e:
+    print(f"Error occurred while writing to Logs.txt: {str(e)}")
 
 print(results)
