@@ -22,3 +22,7 @@ if __name__ == '__main__':
 
     result = modify_steps(username, password, steps)
     print(result)
+    print('Request:', response.request.url)
+    print('Request data:', response.request.body)
+    print('Response:', response.text)
+
