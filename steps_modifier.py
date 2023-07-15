@@ -41,4 +41,3 @@ print("成功的账号：")
 for result, account in zip(results, accounts):
     if result['code'] == 1 and result['message'] == 'success':
         print(account)
-        print(steps)
