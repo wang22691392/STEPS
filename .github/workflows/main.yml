@@ -1,4 +1,4 @@
-name: Run step.py
+name: Steps Modifier
 
 on:
   push:
@@ -6,22 +6,20 @@ on:
       - main
 
 jobs:
-  build:
+  modify_steps:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.8
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+    - name: Install dependencies
+      run: pip install requests
 
-      - name: Run step.py
-        run: python step.py
-        env:
-          URL: http://bs.svv.ink
+    - name: Modify steps
+      run: python steps_modifier.py
