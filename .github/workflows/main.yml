@@ -1,4 +1,4 @@
-name: Modify Steps
+name: Run step.py
 
 on:
   push:
@@ -6,8 +6,9 @@ on:
       - main
 
 jobs:
-  initial_run:
+  build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -15,36 +16,10 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
-
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
+          python-version: 3.8
 
       - name: Install dependencies
-        run: pip install requests
+        run: pip install -r requirements.txt
 
-      - name: Modify Steps
-        run: |
-          python -c "import requests
-
-          def modify_steps(username, password, steps):
-              url = 'http://bs.svv.ink/index.php'
-              data = {
-                  'username': username,
-                  'password': password,
-                  'steps': steps
-              }
-              response = requests.post(url, data=data)
-
-              if response.status_code == 200:
-                  print('步数修改成功！')
-              else:
-                  print('步数修改失败！')
-
-          username = '15033296069'
-          password = '20030101h'
-          steps = 10000
-
-          modify_steps(username, password, steps)"
+      - name: Run step.py
+        run: python step.py
