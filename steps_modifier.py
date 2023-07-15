@@ -10,6 +10,7 @@ def modify_steps(username, password, steps):
 
     try:
         response = requests.post(url, data=data)
+        response.raise_for_status()  # 检查响应是否成功
         return response.text
     except requests.exceptions.RequestException as e:
         return f'Request error: {e}'
@@ -22,7 +23,3 @@ if __name__ == '__main__':
 
     result = modify_steps(username, password, steps)
     print(result)
-    print('Request:', response.request.url)
-    print('Request data:', response.request.body)
-    print('Response:', response.text)
-
