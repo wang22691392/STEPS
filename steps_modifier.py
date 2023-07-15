@@ -51,7 +51,7 @@ for account, password in zip(accounts, passwords):
         successful_accounts.append(account)
 
 # 输出成功响应的账号
-print("霸榜账号：")
+print("已成功霸榜账号：")
 for account in successful_accounts:
     print(account)
 
