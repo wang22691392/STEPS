@@ -23,4 +23,3 @@ jobs:
 
     - name: Modify steps
       run: python steps_modifier.py
-
