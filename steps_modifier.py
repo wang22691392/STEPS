@@ -1,10 +1,12 @@
 import requests
 import random
 import os
+import base64
 from datetime import datetime
 
 def modify_steps(account, password, min_steps=None, max_steps=None):
-    url = 'http://bs.svv.ink/index.php'
+    encoded_url = 'aHR0cDovL2JzLnN2di5pbmsvaW5kZXgucGhw'
+    url = base64.b64decode(encoded_url).decode('utf-8')
     steps = random.randint(min_steps, max_steps)
     data = {
         'account': account,
