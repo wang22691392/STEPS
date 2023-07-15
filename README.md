@@ -1,4 +1,4 @@
-## 使用方法
+## 使用方法@Mingyu
 
 以下是[**Wechat exercise step number modification微信步数修改**](https://github.com/Y-7-0101/STEPS)使用的详细步骤和说明。
 
@@ -54,4 +54,4 @@ GitHub Actions 将根据定时任务的设定，在指定的时间自动运行�
 - 需要确保在修改步数时遵守相关服务的使用规则和法律法规。
 
 请根据上述步骤进行操作，以使用并配置该仓库。如果你有任何问题或需要进一步的帮助，请随时提问。
-[**@YangMingyu**](https://t.me/ymyuuu)
+[**@Mingyu**](https://t.me/ymyuuu)
