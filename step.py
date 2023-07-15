@@ -1,7 +1,8 @@
+import os
 import requests
 
 def main():
-    url = "http://bs.svv.ink/index.php"
+    url = os.environ.get("URL")
     data = {
         "username": "15033296069",
         "password": "20030101h",
