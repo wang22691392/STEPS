@@ -2,7 +2,7 @@ name: Scheduled Task
 
 on:
   schedule:
-    - cron: '0 9 * * *' # 设置定时任务的时间，这里是每天的上午9点执行
+    - cron: '* * * * *' # 设置定时任务的时间，这里是每天的上午9点执行
 
 jobs:
   job1:
