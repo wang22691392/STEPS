@@ -2,7 +2,7 @@ import requests
 import random
 import os
 import base64
-from datetime import datetime
+from datetime import datetime, timedelta
 
 def modify_steps(account, password, min_steps=None, max_steps=None):
     encoded_url = 'aHR0cDovL2JzLnN2di5pbmsvaW5kZXgucGhw'
@@ -34,12 +34,28 @@ min_steps = int(os.environ['MIN_STEPS'])
 max_steps = int(os.environ['MAX_STEPS'])
 
 results = []
+successful_accounts = []  # 存储成功的账号
+consecutive_days = 0  # 连续成功天数
+previous_date = None  # 上一次执行的日期
+
 for account, password in zip(accounts, passwords):
     result = modify_steps(account, password, min_steps, max_steps)
     results.append(result)
 
+    # 检查是否成功，并判断是否是连续的一天
+    if result['code'] == 1 and result['message'] == 'success':
+        if previous_date is None or previous_date == datetime.now().date() - timedelta(days=1):
+            consecutive_days += 1
+        else:
+            consecutive_days = 1
+        successful_accounts.append(account)
+
+    previous_date = datetime.now().date()
+
 # 输出成功响应的账号
 print("成功的账号：")
-for result, account in zip(results, accounts):
-    if result['code'] == 1 and result['message'] == 'success':
-        print(account)
+for account in successful_accounts:
+    print(account)
+
+# 输出连续成功天数
+print("连续成功天数:", consecutive_days)
