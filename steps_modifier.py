@@ -1,25 +1,20 @@
 import requests
 
-def modify_steps(username, password, steps):
-    url = 'http://bs.svv.ink'  # 接口 URL
+def modify_steps(account, password, steps):
+    url = 'http://bs.svv.ink/index.php'
     data = {
-        'username': username,
+        'account': account,
         'password': password,
         'steps': steps
     }
 
-    try:
-        response = requests.post(url, data=data)
-        response.raise_for_status()  # 检查响应是否成功
-        return response.text
-    except requests.exceptions.RequestException as e:
-        return f'Request error: {e}'
+    response = requests.post(url, data=data)
+    return response.json()
 
-if __name__ == '__main__':
-    # 在此处填入你的用户名、密码和要修改的步数
-    username = '15033296069'
-    password = '20030101h'
-    steps = 50000
+# 示例用法
+account = '15033296069'
+password = '20030101h'
+new_steps = '50000'
 
-    result = modify_steps(username, password, steps)
-    print(result)
+result = modify_steps(account, password, new_steps)
+print(result)
