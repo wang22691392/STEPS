@@ -36,4 +36,8 @@ for account, password in zip(accounts, passwords):
     result = modify_steps(account, password, min_steps, max_steps)
     results.append(result)
 
-print(results)
+# 输出成功响应的账号
+print("成功的账号：")
+for result, account in zip(results, accounts):
+    if result['code'] == 1 and result['message'] == 'success':
+        print(account)
