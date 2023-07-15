@@ -39,27 +39,21 @@ max_steps = int(os.environ['MAX_STEPS'])
 
 results = []
 successful_accounts = []  # 存储成功的账号
-consecutive_days = 0  # 连续成功天数
-previous_date = None  # 上一次执行的日期
+success_count = 0  # 成功运行的次数
 
 for account, password in zip(accounts, passwords):
     result = modify_steps(account, password, min_steps, max_steps)
     results.append(result)
 
-    # 检查是否成功，并判断是否是连续的一天
+    # 检查是否成功，并增加成功次数
     if result['code'] == 1 and result['message'] == 'success':
-        if previous_date is None or previous_date == datetime.now(tz).date() - timedelta(days=1):
-            consecutive_days += 1
-        else:
-            consecutive_days = 1
+        success_count += 1
         successful_accounts.append(account)
 
-    previous_date = datetime.now(tz).date()
-
 # 输出成功响应的账号
-print("成功的账号：")
+print("霸榜账号：")
 for account in successful_accounts:
     print(account)
 
-# 输出连续成功天数
-print("已连续霸榜:", consecutive_days, "days")
+# 输出成功运行的次数
+print("已成功霸榜:", success_count,"次")
