@@ -48,13 +48,14 @@ for account, password in zip(accounts, passwords):
 
     # 检查是否成功，并判断是否是连续的一天
     if result['code'] == 1 and result['message'] == 'success':
-        if previous_date is None or previous_date == datetime.now(tz).date() - timedelta(days=1):
+        current_date = datetime.now(tz).date()
+        if previous_date is None or previous_date == current_date - timedelta(days=1):
             consecutive_days += 1
         else:
             consecutive_days = 1
         successful_accounts.append(account)
 
-        previous_date = datetime.now(tz).date()  # 更新 previous_date
+        previous_date = current_date  # 更新 previous_date
 
 # 输出成功响应的账号
 print("成功的账号：")
