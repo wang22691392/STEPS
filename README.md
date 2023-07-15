@@ -44,9 +44,8 @@ GitHub Actions 将根据定时任务的设定，在指定的时间自动运行�
 在每次定时任务运行后，你可以在 GitHub Actions 日志中查看步数修改的结果。GitHub Actions 的日志提供了详细的输出，包括每个账号的步数修改结果和请求响应。
 <div style="width: 100%;">
   <img style="width: 100%; height: auto;" src="https://github.com/Y-7-0101/STEPS/assets/135582157/04150509-376b-443f-8a3f-a241302f3783">
+  <img style="width: 100%; height: auto;" src="https://github.com/Y-7-0101/STEPS/assets/135582157/b7b895b7-7a52-4af4-8499-4016755fdb3c">
 </div>
-
-
 
 ## 注意事项
 
