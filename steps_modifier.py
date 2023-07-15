@@ -41,19 +41,34 @@ results = []
 successful_accounts = []  # 存储成功的账号
 success_count = 0  # 成功运行的次数
 
-for account, password in zip(accounts, passwords):
-    result = modify_steps(account, password, min_steps, max_steps)
-    results.append(result)
+# 增加计数器，记录脚本运行的次数
+script_run_count = 0
 
-    # 检查是否成功，并增加成功次数
-    if result['code'] == 1 and result['message'] == 'success':
-        success_count += 1
-        successful_accounts.append(account)
+while True:
+    script_run_count += 1
+    print("第", script_run_count, "次运行")
 
-# 输出成功响应的账号
-print("已成功霸榜账号：")
-for account in successful_accounts:
-    print(account)
+    for account, password in zip(accounts, passwords):
+        result = modify_steps(account, password, min_steps, max_steps)
+        results.append(result)
 
-# 输出成功运行的次数
-print("已成功霸榜:", success_count,"次")
+        # 检查是否成功，并增加成功次数
+        if result['code'] == 1 and result['message'] == 'success':
+            success_count += 1
+            successful_accounts.append(account)
+
+    # 输出成功响应的账号
+    print("已成功霸榜账号：")
+    for account in successful_accounts:
+        print(account)
+
+    # 输出成功运行的次数
+    print("已成功霸榜:", success_count, "次")
+
+    # 重置成功计数器和成功账号列表
+    success_count = 0
+    successful_accounts = []
+
+    # 添加循环结束条件，例如达到特定的运行次数
+    if script_run_count >= 10:  # 这里假设脚本运行10次
+        break
