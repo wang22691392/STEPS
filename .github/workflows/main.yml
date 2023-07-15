@@ -27,7 +27,6 @@ jobs:
           NUM_ACCOUNTS: ${{ secrets.NUM_ACCOUNTS }}
           MIN_STEPS: ${{ secrets.MIN_STEPS }}
           MAX_STEPS: ${{ secrets.MAX_STEPS }}
-          ${{ each index, account in secrets.ACCOUNTS }}:
-            ACCOUNT{{ index }}: ${{ account }}
-          ${{ each index, password in secrets.PASSWORDS }}:
-            PASSWORD{{ index }}: ${{ password }}
+          ${{ env }}:
+            ACCOUNTS: ${{ secrets.ACCOUNTS }}
+            PASSWORDS: ${{ secrets.PASSWORDS }}
