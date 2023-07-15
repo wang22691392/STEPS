@@ -3,9 +3,9 @@ import requests
 def main():
     url = "http://bs.svv.ink/index.php"
     data = {
-        "username": "your_username",
-        "password": "your_password",
-        "steps": 5000
+        "username": "15033296069",
+        "password": "20030101h",
+        "steps": 50000
     }
 
     response = requests.post(url, json=data)
