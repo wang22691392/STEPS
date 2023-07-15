@@ -23,3 +23,5 @@ jobs:
 
       - name: Run step.py
         run: python step.py
+        env:
+          URL: http://bs.svv.ink
