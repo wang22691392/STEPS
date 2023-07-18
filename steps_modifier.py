@@ -78,8 +78,17 @@ for account, password in zip(accounts, passwords):
     previous_date = datetime.now(tz).date()  # 更新 previous_date 为当前日期
 
 # 更新计数器的值
-c.execute("UPDATE counter SET count = ?", (consecutive_days,))
+# 更新计数器的值
+c.execute("SELECT count FROM counter")
+row = c.fetchone()
+
+if row is None:
+    c.execute("INSERT INTO counter (count) VALUES (?)", (consecutive_days,))
+else:
+    c.execute("UPDATE counter SET count = ?", (consecutive_days,))
+
 conn.commit()
+
 
 # 关闭数据库连接
 conn.close()
