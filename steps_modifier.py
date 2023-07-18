@@ -46,7 +46,10 @@ counter = 0
 
 if os.path.exists(counter_file):
     with open(counter_file, 'r') as f:
-        counter = int(f.read())
+        counter_str = f.read().strip()  # 剥离额外的空白字符
+        if counter_str:
+            counter = int(counter_str)
+
 
 consecutive_days = counter  # 连续成功天数从计数器值开始
 previous_date = None  # 上一次执行的日期
