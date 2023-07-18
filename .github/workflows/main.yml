@@ -2,48 +2,32 @@ name: Steps Modifier
 
 on:
   push:
-    branches:
+    branches: 
       - main
-
-env:
-  COUNTER_FILE: counter.txt
+  schedule:
+    - cron: '6 10 * * *'  # 在UTC时间上午10点6分运行
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.7'
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install requests pytz
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pytz  # 安装 pytz 模块
 
-    - name: Set environment variables
-      run: |
-        echo "ACCOUNTS=$ACCOUNTS" >> $GITHUB_ENV
-        echo "PASSWORDS=$PASSWORDS" >> $GITHUB_ENV
-        echo "MIN_STEPS=$MIN_STEPS" >> $GITHUB_ENV
-        echo "MAX_STEPS=$MAX_STEPS" >> $GITHUB_ENV
-
-    - name: Debug environment variables
-      run: |
-        echo "ACCOUNTS: $ACCOUNTS"
-        echo "PASSWORDS: $PASSWORDS"
-        echo "MIN_STEPS: $MIN_STEPS"
-        echo "MAX_STEPS: $MAX_STEPS"
-
-    - name: Run steps_modifier.py
-      run: |
-        python steps_modifier.py
-
-    - name: Update counter
-      run: |
-        echo ${{ env.COUNTER }} > ${{ github.workspace }}/${{ env.COUNTER_FILE }}
+      - name: Run steps modifier
+        run: python steps_modifier.py
+        env:
+          ACCOUNTS: ${{ secrets.ACCOUNTS }}
+          PASSWORDS: ${{ secrets.PASSWORDS }}
+          MIN_STEPS: ${{ secrets.MIN_STEPS }}
+          MAX_STEPS: ${{ secrets.MAX_STEPS }}
