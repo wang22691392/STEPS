@@ -39,7 +39,16 @@ max_steps = int(os.environ['MAX_STEPS'])
 
 results = []
 successful_accounts = []  # 存储成功的账号
-consecutive_days = 0  # 连续成功天数
+
+# 读取计数器的值
+counter_file = "counter.txt"
+counter = 0
+
+if os.path.exists(counter_file):
+    with open(counter_file, 'r') as f:
+        counter = int(f.read())
+
+consecutive_days = counter  # 连续成功天数从计数器值开始
 previous_date = None  # 上一次执行的日期
 
 for account, password in zip(accounts, passwords):
@@ -55,6 +64,10 @@ for account, password in zip(accounts, passwords):
         successful_accounts.append(account)
 
     previous_date = datetime.now(tz).date()  # 更新 previous_date 为当前日期
+
+# 保存计数器的值到文件
+with open(counter_file, 'w') as f:
+    f.write(str(consecutive_days))
 
 # 输出成功响应的账号
 print("成功的账号：")
