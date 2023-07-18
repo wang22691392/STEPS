@@ -4,7 +4,6 @@ import os
 import base64
 from datetime import datetime, timedelta
 import pytz
-import sqlite3
 
 # 设置时区为北京时间
 tz = pytz.timezone('Asia/Shanghai')
@@ -40,27 +39,7 @@ max_steps = int(os.environ['MAX_STEPS'])
 
 results = []
 successful_accounts = []  # 存储成功的账号
-
-# 连接数据库
-conn = sqlite3.connect('counter.db')
-c = conn.cursor()
-
-# 创建计数器表格
-c.execute('''CREATE TABLE IF NOT EXISTS counter
-             (count INT)''')
-conn.commit()
-
-# 读取计数器的值
-c.execute("SELECT count FROM counter")
-row = c.fetchone()
-
-if row is None:
-    # 第一次运行，计数器表格为空
-    counter = 0
-else:
-    counter = row[0]
-
-consecutive_days = counter  # 连续成功天数从计数器值开始
+consecutive_days = 0  # 连续成功天数
 previous_date = None  # 上一次执行的日期
 
 for account, password in zip(accounts, passwords):
@@ -75,23 +54,9 @@ for account, password in zip(accounts, passwords):
             consecutive_days = 1
         successful_accounts.append(account)
 
-    previous_date = datetime.now(tz).date()  # 更新 previous_date 为当前日期
-
-# 更新计数器的值
-# 更新计数器的值
-c.execute("SELECT count FROM counter")
-row = c.fetchone()
-
-if row is None:
-    c.execute("INSERT INTO counter (count) VALUES (?)", (consecutive_days,))
-else:
-    c.execute("UPDATE counter SET count = ?", (consecutive_days,))
-
-conn.commit()
+        previous_date = datetime.now(tz).date()  # 更新 previous_date 为当前日期
 
 
-# 关闭数据库连接
-conn.close()
 
 # 输出成功响应的账号
 print("成功的账号：")
