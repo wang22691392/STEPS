@@ -54,9 +54,7 @@ for account, password in zip(accounts, passwords):
             consecutive_days = 1
         successful_accounts.append(account)
 
-        previous_date = datetime.now(tz).date()  # 更新 previous_date 为当前日期
-
-
+    previous_date = datetime.now(tz).date()  # 更新 previous_date 为当前日期
 
 # 输出成功响应的账号
 print("成功的账号：")
