@@ -26,6 +26,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install requests pytz
 
+    - name: Set environment variables
+      run: |
+        echo "ACCOUNTS=$ACCOUNTS" >> $GITHUB_ENV
+        echo "PASSWORDS=$PASSWORDS" >> $GITHUB_ENV
+        echo "MIN_STEPS=$MIN_STEPS" >> $GITHUB_ENV
+        echo "MAX_STEPS=$MAX_STEPS" >> $GITHUB_ENV
+
     - name: Run steps_modifier.py
       run: |
         python steps_modifier.py
