@@ -50,7 +50,6 @@ if os.path.exists(counter_file):
         if counter_str:
             counter = int(counter_str)
 
-
 consecutive_days = counter  # 连续成功天数从计数器值开始
 previous_date = None  # 上一次执行的日期
 
