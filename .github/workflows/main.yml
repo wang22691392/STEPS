@@ -33,6 +33,13 @@ jobs:
         echo "MIN_STEPS=$MIN_STEPS" >> $GITHUB_ENV
         echo "MAX_STEPS=$MAX_STEPS" >> $GITHUB_ENV
 
+    - name: Debug environment variables
+      run: |
+        echo "ACCOUNTS: $ACCOUNTS"
+        echo "PASSWORDS: $PASSWORDS"
+        echo "MIN_STEPS: $MIN_STEPS"
+        echo "MAX_STEPS: $MAX_STEPS"
+
     - name: Run steps_modifier.py
       run: |
         python steps_modifier.py
