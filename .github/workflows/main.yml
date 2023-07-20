@@ -5,7 +5,7 @@ on:
     branches: 
       - main
   schedule:
-    - cron: '0 20 * * *'  # 在UTC时间上午10点6分运行
+    - cron: '0 12 * * *'  # 在UTC时间上午10点6分运行
 
 jobs:
   build:
